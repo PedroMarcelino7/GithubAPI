@@ -34,10 +34,10 @@ export const Input = styled.input`
   line-height: 64px;
   border: none;
   font-size: 24px;
-  margin-right: 24px;
-  padding: 0 24px;
+  // margin-right: 24px;
+  padding-inline: 24px;
 
-  &::placehoder {
+  &::placeholder {
     color: ${(props) => props.theme.colors.metalDark};
   }
 `;
