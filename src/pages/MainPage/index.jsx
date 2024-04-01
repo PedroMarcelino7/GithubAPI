@@ -15,7 +15,7 @@ export default function MainPage() {
         <Input placeholder="User" />
 
         <Button>
-          <MdSearch size={35} />
+          <MdSearch size={40} />
         </Button>
       </Form>
     </Container>
