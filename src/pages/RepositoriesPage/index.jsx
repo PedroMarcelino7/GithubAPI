@@ -1,6 +1,8 @@
 import React from 'react'
 
 import { Container, Sidebar, Main } from './styles'
+import { getLangsFrom } from '../../services/api'
+
 import Profile from './Profile'
 import Filter from './Filter'
 import Repositories from './Repositories'
@@ -17,11 +19,52 @@ export default function RepositoriesPage() {
         location: 'Lorena',
     }
 
+    const repositories = [
+        {
+            name: 'Repository 1',
+            description: 'Descrição',
+            html_url: 'https://pedromarcelino7.github.io/Portfolio',
+            language: 'JavaScript',
+        },
+        {
+            name: 'Repository 2',
+            description: 'Descrição',
+            html_url: 'https://pedromarcelino7.github.io/Pokedex',
+            language: 'React',
+        },
+        {
+            name: 'Repository 3',
+            description: 'Descrição',
+            html_url: 'https://pedromarcelino7.github.io/MoviesAPI',
+            language: 'JavaScript',
+        },
+        {
+            name: 'Repository 4',
+            description: 'Descrição',
+            html_url: 'https://pedromarcelino7-ebook-website.vercel.app/',
+            language: 'HTML',
+        },
+        {
+            name: 'Repository 5',
+            description: 'Descrição',
+            html_url: 'https://pedromarcelino7.github.io/QRCodeGenerator',
+            language: 'VUE',
+        },
+        {
+            name: 'Repository 6',
+            description: 'Descrição',
+            html_url: 'https://pedromarcelino7.github.io/BootstrapMiniChallenges',
+            language: 'Bootstrap',
+        },
+    ]
+
+    const languages = getLangsFrom(repositories)
+
     return (
         <Container>
             <Sidebar>
                 <Profile user={user} />
-                <Filter />
+                <Filter languages={languages} />
             </Sidebar>
 
             <Main>

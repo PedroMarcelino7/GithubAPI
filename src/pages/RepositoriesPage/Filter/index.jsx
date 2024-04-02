@@ -1,15 +1,11 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
+
 import { Container, Selector, Cleaner } from './styles'
 
-export default function Filter() {
-    const langs = [
-        { name: 'JavaScript', count: 5, color: '#f1c40f' },
-        { name: 'Shell', count: 2, color: '#95a5a6' },
-        { name: 'PHP', count: 1, color: '#3498db' },
-    ]
-
-    const selectors = langs.map((lang) => (
+export default function Filter({ languages }) {
+    const selectors = languages.map((lang) => (
         <Selector
             key={lang.name}
             color={lang.color}
@@ -25,4 +21,14 @@ export default function Filter() {
             <Cleaner>Limpar</Cleaner>
         </Container>
     )
+}
+
+Filter.propTypes = {
+    languages: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            count: PropTypes.number.isRequired,
+            color: PropTypes.string,
+        }).isRequired
+    ).isRequired
 }
