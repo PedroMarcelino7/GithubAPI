@@ -1,34 +1,56 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
+
 import { MdGroup, MdLocationCity, MdWork, MdLink } from 'react-icons/md'
 import { Container, Header, Avatar, Login, Name, Inner, Data } from './styles'
 
-export default function Profile() {
+
+export default function Profile({ user }) {
     return (
         <Container>
             <Header>
-                <Avatar src='https://avatars.githubusercontent.com/u/87608270?v=4' />
-                <Login>PedroMarcelino7</Login>
-                <Name>Pedro Paulo Marcelino</Name>
+                <Avatar src={user.avatar_url} />
+                <Login>{user.login}</Login>
+                <Name>{user.name}</Name>
             </Header>
 
             <Inner>
                 <Data>
-                    <MdGroup size={20} /> 30<i>&nbsp;seguidores&nbsp;</i> &middot; 10 <i>&nbsp;seguindo</i>
+                    <MdGroup size={20} /> {user.followers}<i>&nbsp;seguidores&nbsp;</i> &middot; {user.following} <i>&nbsp;seguindo</i>
                 </Data>
 
-                <Data>
-                    <MdWork size={20} /> Dev Samurai
-                </Data>
+                {user.company &&
+                    <Data Data >
+                        <MdWork size={20} /> {user.company}
+                    </Data>
+                }
 
-                <Data>
-                    <MdLocationCity size={20} /> Lorena
-                </Data>
+                {user.location &&
+                    <Data>
+                        <MdLocationCity size={20} /> {user.location}
+                    </Data>
+                }
 
-                <Data>
-                    <MdLink size={20} /> <a href="https://pedromarcelino7.github.io/Portfolio">portfólio</a>
-                </Data>
+                {user.blog &&
+                    <Data>
+                        <MdLink size={20} /> <a href={`\\${user.blog}`}>Blog</a>
+                    </Data>
+                }
             </Inner>
-        </Container>
+        </Container >
     )
+}
+
+Profile.propTypes = {
+    user: PropTypes.shape({
+        login: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        avatar_url: PropTypes.string.isRequired,
+        followers: PropTypes.number.isRequired,
+        following: PropTypes.number.isRequired,
+        company: PropTypes.string,
+        blog: PropTypes.string,
+        location: PropTypes.string,
+    }).isRequired
 }
