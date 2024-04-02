@@ -21,36 +21,42 @@ export default function RepositoriesPage() {
 
     const repositories = [
         {
+            id: '1',
             name: 'Repository 1',
             description: 'Descrição',
             html_url: 'https://pedromarcelino7.github.io/Portfolio',
             language: 'JavaScript',
         },
         {
+            id: '2',
             name: 'Repository 2',
             description: 'Descrição',
             html_url: 'https://pedromarcelino7.github.io/Pokedex',
             language: 'React',
         },
         {
+            id: '3',
             name: 'Repository 3',
             description: 'Descrição',
             html_url: 'https://pedromarcelino7.github.io/MoviesAPI',
             language: 'JavaScript',
         },
         {
+            id: '4',
             name: 'Repository 4',
             description: 'Descrição',
             html_url: 'https://pedromarcelino7-ebook-website.vercel.app/',
             language: 'HTML',
         },
         {
+            id: '5',
             name: 'Repository 5',
             description: 'Descrição',
             html_url: 'https://pedromarcelino7.github.io/QRCodeGenerator',
             language: 'VUE',
         },
         {
+            id: '6',
             name: 'Repository 6',
             description: 'Descrição',
             html_url: 'https://pedromarcelino7.github.io/BootstrapMiniChallenges',
@@ -68,7 +74,7 @@ export default function RepositoriesPage() {
             </Sidebar>
 
             <Main>
-                <Repositories />
+                <Repositories repositories={repositories} />
             </Main>
         </Container>
     )
