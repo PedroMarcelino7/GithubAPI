@@ -1,25 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Container, Sidebar, Main } from './styles'
-import { getLangsFrom } from '../../services/api'
+import { Loading, Container, Sidebar, Main } from './styles'
+import { getUser, getLangsFrom } from '../../services/api'
 
 import Profile from './Profile'
 import Filter from './Filter'
 import Repositories from './Repositories'
 
 export default function RepositoriesPage() {
+    const [user, setUser] = useState()
     const [currentLanguage, setCurrentLanguage] = useState()
+    const [loading, setLoading] = useState(true)
 
-    const user = {
-        login: 'PedroMarcelino7',
-        name: 'Pedro Paulo Marcelino',
-        avatar_url: 'https://avatars.githubusercontent.com/u/87608270?v=4',
-        followers: 0,
-        following: 0,
-        company: null,
-        blog: 'https://pedromarcelino7.github.io/Portfolio',
-        location: 'Lorena',
-    }
+    useEffect(() => {
+        const loadData = async () => {
+            const [userResponse] = await Promise.all([
+                getUser('PedroMarcelino7')
+            ])
+
+            setUser(userResponse.data)
+
+            setLoading(false)
+        }
+
+        loadData()
+    }, [])
+
+    // const user = {
+    //     login: 'PedroMarcelino7',
+    //     name: 'Pedro Paulo Marcelino',
+    //     avatar_url: 'https://avatars.githubusercontent.com/u/87608270?v=4',
+    //     followers: 0,
+    //     following: 0,
+    //     company: null,
+    //     blog: 'https://pedromarcelino7.github.io/Portfolio',
+    //     location: 'Lorena',
+    // }
 
     const repositories = [
         {
@@ -70,6 +86,10 @@ export default function RepositoriesPage() {
 
     const onFilterClick = (language) => {
         setCurrentLanguage(language)
+    }
+
+    if (loading) {
+        return <Loading>Carregando...</Loading>
     }
 
     return (
