@@ -6,7 +6,7 @@ import { Container, Logo, Title, Form, Input, Button } from "./styles"
 import githubLogo from '../../assets/images/github-logo.svg'
 
 export default function MainPage() {
-  const [login, setLogin] = useState('')
+  const [login, setLogin] = useState('PedroMarcelino7')
 
   return (
     <Container>

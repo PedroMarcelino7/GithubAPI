@@ -40,7 +40,7 @@ export default function RepositoriesPage() {
     }
 
     if (loading) {
-        return <Loading>Carregando...</Loading>
+        return <Loading>Loading...</Loading>
     }
 
     return (
